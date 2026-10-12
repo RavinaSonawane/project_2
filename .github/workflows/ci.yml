@@ -1,0 +1,41 @@
+name: Python CI/CD Pipeline
+
+# When does this run?
+# - Every time you push code to "main" branch
+# - Every time you open a pull request to "main"
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Download your code
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 2: Install Python
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # Step 3: Install dependencies (pytest)
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # Step 4: Run the Python program
+      - name: Run main.py
+        run: python main.py
+
+      # Step 5: Run tests
+      - name: Run tests
+        run: pytest test_main.py -v
+
+      # Step 6: Success!
+      - name: Pipeline complete
+        run: echo "✅ CI/CD Pipeline passed — Great job Ravina!"
