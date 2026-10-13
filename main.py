@@ -77,6 +77,63 @@ even_numbers = [n for n in range(1, 11) if is_even(n)]
 print(f"  {even_numbers}")
 
 
+
+# --- 6. File Handling (Day 1 - NEW!) ---
+def save_student_info(student_dict, filename="student.txt"):
+    """Save student info to a text file.
+
+    Args:
+        student_dict: Dictionary with student data
+        filename: Name of file to save to (default: student.txt)
+    """
+    try:
+        with open(filename, "w") as file:
+            for key, value in student_dict.items():
+                file.write(f"{key}: {value}\n")
+        print(f"\n  ✅ Student info saved to '{filename}'")
+        return True
+    except IOError:
+        print(f"\n  ❌ Error: Could not write to '{filename}'")
+        return False
+
+
+def read_student_info(filename="student.txt"):
+    """Read student info from a text file.
+
+    Args:
+        filename: Name of file to read from (default: student.txt)
+
+    Returns:
+        The file content as a string, or None if file not found
+    """
+    try:
+        with open(filename, "r") as file:
+            content = file.read()
+        return content
+    except FileNotFoundError:
+        print(f"\n  ❌ Error: File '{filename}' not found!")
+        return None
+
+
+# --- Using File Handling ---
+print("\n--- File Handling Demo ---")
+
+# Save the student dictionary to a file
+save_student_info(student)
+
+# Read it back
+print("\n--- Reading from file ---")
+content = read_student_info()
+if content:
+    print(content)
+
+# Try reading a file that doesn't exist (error handling demo)
+print("--- Error Handling Demo ---")
+result = read_student_info("does_not_exist.txt")
+if result is None:
+    print("  (We handled the error — program didn't crash!)")
+
+
 print("\n" + "=" * 40)
 print("  ✅ Program completed successfully!")
 print("=" * 40)
