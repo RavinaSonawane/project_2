@@ -20,5 +20,3 @@ Thumbs.db
 
 # Generated data files
 student.txt
-*.db
-*.sqlite3
