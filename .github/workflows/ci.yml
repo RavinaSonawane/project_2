@@ -32,6 +32,9 @@ jobs:
       - name: Run arithmetic.py
         run: python arithmetic.py
 
+      - name: Run expense_tracker.py
+        run: python expense_tracker.py
+
       - name: Run main.py
         run: python main.py
 
